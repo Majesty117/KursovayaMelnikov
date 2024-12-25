@@ -1,0 +1,22 @@
+\doxysection{TSP.\+h}
+\hypertarget{_t_s_p_8h_source}{}\label{_t_s_p_8h_source}\mbox{\hyperlink{_t_s_p_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00005}00005\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00007}\mbox{\hyperlink{_t_s_p_8h_a14c9dbab105f1b8b8182a022d73e610c}{00007}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_t_s_p_8h_a14c9dbab105f1b8b8182a022d73e610c}{INF}}\ =\ 1e9;}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00015}00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_t_s_p_8h_a2abc3e7cdd615d9e05a62aed685e7a4c}{Input}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00025}00025\ pair<vector<pair<int,\ int>>,\ \textcolor{keywordtype}{int}>\ \mbox{\hyperlink{_t_s_p_8h_ad8a6faf41190ac00ad266459907fa20f}{SolutionGreedy}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start);}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00035}00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_t_s_p_8h_a66e27966fa00bcf0d39f85cd707e69a5}{GraphvizGreedy}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00045}00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_t_s_p_8h_ae41b7c74bc001952f47c3146820dad92}{GraphvizBAB}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename);}
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_t_s_p_8h_source_l00061}00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_t_s_p_8h_a531df3c6f415ae23ce16f62979fe51ac}{SolutionBAB}}(vector<vector<int>>\&\ SolutionArray,\ vector<int>\&\ visited,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keywordtype}{int}\ curcountnodes,\ \textcolor{keywordtype}{int}\ curcost,\ \textcolor{keywordtype}{int}\ curnode,\ \textcolor{keywordtype}{int}\&\ mincost,\ vector<pair<int,\ int>>\&\ curPath,\ vector<pair<int,\ int>>\&\ bestPath);}
+
+\end{DoxyCode}

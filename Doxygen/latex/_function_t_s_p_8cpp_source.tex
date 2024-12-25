@@ -1,0 +1,126 @@
+\doxysection{Function\+TSP.\+cpp}
+\hypertarget{_function_t_s_p_8cpp_source}{}\label{_function_t_s_p_8cpp_source}\mbox{\hyperlink{_function_t_s_p_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_t_s_p_8h}{TSP.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00009}\mbox{\hyperlink{_function_t_s_p_8cpp_a2abc3e7cdd615d9e05a62aed685e7a4c}{00009}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_function_t_s_p_8cpp_a2abc3e7cdd615d9e05a62aed685e7a4c}{Input}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00010}00010\ \ \ \ \ fstream\ in(filename);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{int}\ start,\ v;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00012}00012\ \ \ \ \ in\ >>\ start;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00013}00013\ \ \ \ \ in\ >>\ v;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ v;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ v;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ in\ >>\ SolutionArray[i][j];}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ j)}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SolutionArray[i][j]\ =\ \mbox{\hyperlink{_t_s_p_8h_a14c9dbab105f1b8b8182a022d73e610c}{INF}};\ \textcolor{comment}{//\ Set\ INF\ for\ diagonal\ entries}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00020}00020\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00021}00021\ \ \ \ \ in.close();}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00032}\mbox{\hyperlink{_function_t_s_p_8cpp_ad8a6faf41190ac00ad266459907fa20f}{00032}}\ pair<vector<pair<int,\ int>>,\ \textcolor{keywordtype}{int}>\ \mbox{\hyperlink{_function_t_s_p_8cpp_ad8a6faf41190ac00ad266459907fa20f}{SolutionGreedy}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordtype}{int}\ mindist\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00034}00034\ \ \ \ \ vector<pair<int,\ int>>\ route;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00035}00035\ \ \ \ \ vector<int>\ visited(v,\ 0);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordtype}{int}\ current\ =\ start;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ visited[current]\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ pair<int,\ int>\ cur\ =\ \{\ -\/1,\ \mbox{\hyperlink{_t_s_p_8h_a14c9dbab105f1b8b8182a022d73e610c}{INF}}\ \};}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ closest\ unvisited\ vertex}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ v;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited[i]\ \&\&\ SolutionArray[current][i]\ <\ cur.second)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur\ =\ \{\ i,\ SolutionArray[current][i]\ \};}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cur.first\ ==\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ route.push\_back(\{\ current,\ cur.second\ \});}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ mindist\ +=\ cur.second;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ current\ =\ cur.first;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Add\ the\ edge\ to\ return\ to\ the\ starting\ vertex}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00059}00059\ \ \ \ \ mindist\ +=\ SolutionArray[current][start];}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00060}00060\ \ \ \ \ route.push\_back(\{\ current,\ SolutionArray[current][start]\ \});}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00061}00061\ \ \ \ \ route.push\_back(\{\ start,\ \mbox{\hyperlink{_t_s_p_8h_a14c9dbab105f1b8b8182a022d73e610c}{INF}}\ \});}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\ route,\ mindist\ \};}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00074}\mbox{\hyperlink{_function_t_s_p_8cpp_a66e27966fa00bcf0d39f85cd707e69a5}{00074}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_function_t_s_p_8cpp_a66e27966fa00bcf0d39f85cd707e69a5}{GraphvizGreedy}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00075}00075\ \ \ \ \ ofstream\ g(filename);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00077}00077\ \ \ \ \ pair<vector<pair<int,\ int>>,\ \textcolor{keywordtype}{int}>\ res\ =\ \mbox{\hyperlink{_function_t_s_p_8cpp_ad8a6faf41190ac00ad266459907fa20f}{SolutionGreedy}}(SolutionArray,\ v,\ start);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00079}00079\ \ \ \ \ g\ <<\ \textcolor{stringliteral}{"{}digraph\ G\ \{"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{int}\ current\ =\ start;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ res.first.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ g\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ current\ <<\ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ <<\ res.first[i].first\ <<\ \textcolor{stringliteral}{"{}\ [label=\(\backslash\)"{}"{}}\ <<\ res.first[i\ -\/\ 1].second\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}];"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ current\ =\ res.first[i].first;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00088}00088\ \ \ \ \ g\ <<\ \textcolor{stringliteral}{"{}\}"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00090}00090\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}after\ greedy\ alg\ mincost\ =\ "{}}\ <<\ res.second\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00092}00092\ \ \ \ \ g.close();}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00093}00093\ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00109}\mbox{\hyperlink{_function_t_s_p_8cpp_a531df3c6f415ae23ce16f62979fe51ac}{00109}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_function_t_s_p_8cpp_a531df3c6f415ae23ce16f62979fe51ac}{SolutionBAB}}(vector<vector<int>>\&\ SolutionArray,\ vector<int>\&\ visited,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keywordtype}{int}\ curcountnodes,\ \textcolor{keywordtype}{int}\ curcost,\ \textcolor{keywordtype}{int}\ curnode,\ \textcolor{keywordtype}{int}\&\ mincost,\ vector<pair<int,\ int>>\&\ curPath,\ vector<pair<int,\ int>>\&\ bestPath)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (curcountnodes\ ==\ v\ \&\&\ SolutionArray[curnode][start]\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (curcost\ +\ SolutionArray[curnode][start]\ <\ mincost)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ mincost\ =\ curcost\ +\ SolutionArray[curnode][start];}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ bestPath\ =\ curPath;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ bestPath.push\_back(\{\ start,\ SolutionArray[curnode][start]\ \});}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00117}00117\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ next\ =\ 0;\ next\ <\ v;\ ++next)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited[next]\ \&\&\ SolutionArray[curnode][next]\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ visited[next]\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ curPath.push\_back(\{\ next,\ SolutionArray[curnode][next]\ \});}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_function_t_s_p_8cpp_a531df3c6f415ae23ce16f62979fe51ac}{SolutionBAB}}(SolutionArray,\ visited,\ v,\ start,\ curcountnodes\ +\ 1,}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ curcost\ +\ SolutionArray[curnode][next],\ next,\ mincost,\ curPath,\ bestPath);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ visited[next]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ curPath.pop\_back();}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00131}00131\ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00141}\mbox{\hyperlink{_function_t_s_p_8cpp_ae41b7c74bc001952f47c3146820dad92}{00141}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_function_t_s_p_8cpp_ae41b7c74bc001952f47c3146820dad92}{GraphvizBAB}}(vector<vector<int>>\&\ SolutionArray,\ \textcolor{keywordtype}{int}\ v,\ \textcolor{keywordtype}{int}\ start,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ filename)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00142}00142\ \ \ \ \ ofstream\ g(filename);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00143}00143\ \ \ \ \ vector<pair<int,\ int>>\ curPath;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00144}00144\ \ \ \ \ vector<pair<int,\ int>>\ bestPath;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00145}00145\ \ \ \ \ vector<int>\ visited(v,\ 0);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordtype}{int}\ mincost\ =\ \mbox{\hyperlink{_t_s_p_8h_a14c9dbab105f1b8b8182a022d73e610c}{INF}};}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00148}00148\ \ \ \ \ visited[start]\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00149}00149\ \ \ \ \ curPath.push\_back(\{\ start,\ 0\ \});}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00151}00151\ \ \ \ \ \mbox{\hyperlink{_function_t_s_p_8cpp_a531df3c6f415ae23ce16f62979fe51ac}{SolutionBAB}}(SolutionArray,\ visited,\ v,\ start,\ 1,\ 0,\ start,\ mincost,\ curPath,\ bestPath);}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00153}00153\ \ \ \ \ g\ <<\ \textcolor{stringliteral}{"{}digraph\ G\ \{"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordtype}{int}\ current\ =\ start;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <\ bestPath.size();\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ g\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ current\ <<\ \textcolor{stringliteral}{"{}\ -\/>\ "{}}\ <<\ bestPath[i].first\ <<\ \textcolor{stringliteral}{"{}\ [label=\(\backslash\)"{}"{}}\ <<\ bestPath[i].second\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}];"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ current\ =\ bestPath[i].first;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00159}00159\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00161}00161\ \ \ \ \ g\ <<\ \textcolor{stringliteral}{"{}\}"{}}\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00163}00163\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}after\ BAB\ mincost\ =\ "{}}\ <<\ mincost\ <<\ endl;}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00164}00164\ \ \ \ \ g.close();}
+\DoxyCodeLine{\Hypertarget{_function_t_s_p_8cpp_source_l00165}00165\ \}}
+
+\end{DoxyCode}
